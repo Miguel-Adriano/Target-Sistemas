@@ -1,0 +1,14 @@
+Questionario realizado em HTML para melhor visualização e expêriencia do avaliador.
+
+Questionario também realizado em py caso a maquina do avaliador, por algum motivo não consiga fazer a visualização em HTML.
+
+
+Requisitos Operacionais: (utilizado na criação do código)
+
+Processador	AMD Ryzen 5 4600G with Radeon Graphics   3.70 GHz;
+RAM instalada	16,0 GB (utilizável: 15,4 GB);
+Armazenamento	224 GB SSD BLINK 240GB, 224 GB SSD Haste-GD-302;
+Placa de vídeo	AMD Radeon(TM) Graphics (496 MB);
+Tipo de sistema	Sistema operacional de 64 bits, processador baseado em x64.
+
+Versão do Pyton: Python 3.11.9

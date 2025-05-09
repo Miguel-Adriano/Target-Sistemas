@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Desafios TS Gupy</title>
+  <link rel="icon" href="/Questionario/img/TargetSistemas.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="/Questionario/css/style.css">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header>
+    <img src="/Questionario/img/TargetSistemas.jpg" alt="Logo da Empresa">
+    <h1>Target Sistemas Gupy | Miguel Adriano</h1>
+  </header>
+  
+  <main>
+    <h1>Resolução dos Desafios</h1>
+
+    <!-- 1) Soma com laço -->
+    <section>
+      <h2>1) Soma de 1 até 13</h2>
+      <p>
+        Código:<br>
+        <code>int INDICE = 13, SOMA = 0, K = 0;<br>
+        Enquanto K &lt; INDICE faça { K = K + 1; SOMA = SOMA + K; }<br>
+        Imprimir(SOMA); <br><br>
+        Ao final do processamento, qual será o valor da variável SOMA?</code>
+      </p>
+      <div class="button-group">
+        <button onclick="resolverSoma()">Calcular</button>
+        <button onclick="limparSaida('saida1')">Limpar</button>
+      </div>
+      <div class="output" id="saida1"></div>
+    </section>
+
+    <!-- 2) Fibonacci -->
+    <section>
+      <h2>2) Verificar se número pertence à sequência de Fibonacci</h2>
+      <input type="number" id="inputFibonacci" placeholder="Digite um número">
+      <div class="button-group">
+        <button onclick="verificarFibonacci()">Verificar</button>
+        <button onclick="limparSaida('saida2')">Limpar</button>
+      </div>
+      <div class="output" id="saida2"></div>
+    </section>
+
+    <!-- 3) Análise de faturamento -->
+    <section>
+      <h2>3) Faturamento diário (JSON)</h2>
+      <div class="button-group">
+        <button onclick="analisarFaturamento()">Analisar</button>
+        <button onclick="verFaturamentos()">Ver Faturamentos</button>
+        <button onclick="limparSaida('saida3')">Limpar</button>
+      </div>
+      <div class="output" id="saida3"></div>
+    </section>
+
+    <!-- 4) Percentual por estado -->
+    <section>
+      <h2>4) Percentual de representação por estado</h2>
+      <div class="button-group">
+        <button onclick="calcularPercentual()">Calcular</button>
+        <button onclick="limparSaida('saida4')">Limpar</button>
+      </div>
+      <div class="output" id="saida4"></div>
+    </section>
+
+    <!-- 5) Inverter string -->
+    <section>
+      <h2>5) Inverter String</h2>
+      <input type="text" id="inputTexto" placeholder="Digite uma palavra">
+      <div class="button-group">
+        <button onclick="inverterTexto()">Inverter</button>
+        <button onclick="limparSaida('saida5')">Limpar</button>
+      </div>
+      <div class="output" id="saida5"></div>
+    </section>
+  </main>
+
+  <script>
+    // Questão 1
+    function resolverSoma() {
+      let INDICE = 13, SOMA = 0, K = 0;
+      while (K < INDICE) {
+        K += 1;
+        SOMA += K;
+      }
+      document.getElementById("saida1").innerText = "Resultado: " + SOMA;
+    }
+
+    // Questão 2
+    function verificarFibonacci() {
+      const num = parseInt(document.getElementById("inputFibonacci").value);
+      if (isNaN(num)) return;
+
+      let a = 0, b = 1;
+      let pertence = (num === 0 || num === 1);
+      while (b < num) {
+        [a, b] = [b, a + b];
+        if (b === num) pertence = true;
+      }
+
+      const resultadoDiv = document.getElementById("saida2");
+
+      if (pertence) {
+        resultadoDiv.innerText = num + " pertence à sequência de Fibonacci.";
+        resultadoDiv.style.color = "green"; // Se pertence, o texto será verde
+      } else {
+        resultadoDiv.innerText = num + " NÃO pertence à sequência de Fibonacci.";
+        resultadoDiv.style.color = "red"; // Se não pertence, o texto será vermelho
+      }
+    }
+
+    // Função para limpar a saída
+    function limparSaida(id) {
+      document.getElementById(id).innerText = '';
+      if (id === "saida2") {
+        document.getElementById("inputFibonacci").value = '';
+      }
+      if (id === "saida5") {
+        document.getElementById("inputTexto").value = '';
+      }
+    }
+
+    // Questão 3
+function analisarFaturamento() {
+  const dados = [
+    { "dia": 1, "valor": 22174.1664 },
+    { "dia": 2, "valor": 24537.6698 },
+    { "dia": 3, "valor": 26139.6134 },
+    { "dia": 4, "valor": 0.0 },
+    { "dia": 5, "valor": 0.0 },
+    { "dia": 6, "valor": 26742.6612 },
+    { "dia": 7, "valor": 0.0 },
+    { "dia": 8, "valor": 42889.2258 },
+    { "dia": 9, "valor": 46251.174 },
+    { "dia": 10, "valor": 11191.4722 },
+    { "dia": 11, "valor": 0.0 },
+    { "dia": 12, "valor": 0.0 },
+    { "dia": 13, "valor": 3847.4823 },
+    { "dia": 14, "valor": 373.7838 },
+    { "dia": 15, "valor": 2659.7563 },
+    { "dia": 16, "valor": 48924.2448 },
+    { "dia": 17, "valor": 18419.2614 },
+    { "dia": 18, "valor": 0.0 },
+    { "dia": 19, "valor": 0.0 },
+    { "dia": 20, "valor": 35240.1826 },
+    { "dia": 21, "valor": 43829.1667 },
+    { "dia": 22, "valor": 18235.6852 },
+    { "dia": 23, "valor": 4355.0662 },
+    { "dia": 24, "valor": 13327.1025 },
+    { "dia": 25, "valor": 0.0 },
+    { "dia": 26, "valor": 0.0 },
+    { "dia": 27, "valor": 25681.8318 },
+    { "dia": 28, "valor": 1718.1221 },
+    { "dia": 29, "valor": 13220.495 },
+    { "dia": 30, "valor": 8414.61 }
+  ];
+
+  const faturamentos = dados.filter(d => d.valor > 0).map(d => d.valor);
+  const menor = Math.min(...faturamentos);
+  const maior = Math.max(...faturamentos);
+  const media = faturamentos.reduce((a, b) => a + b, 0) / faturamentos.length;
+  const diasAcimaMedia = faturamentos.filter(v => v > media).length;
+
+  document.getElementById("saida3").innerHTML =
+    `Menor valor: R$${menor.toFixed(2)}<br>` +
+    `Maior valor: R$${maior.toFixed(2)}<br>` +
+    `Dias com faturamento acima da média: ${diasAcimaMedia}`;
+}
+
+// Função para exibir todos os faturamentos
+function verFaturamentos() {
+  const dados = [
+    { "dia": 1, "valor": 22174.1664 },
+    { "dia": 2, "valor": 24537.6698 },
+    { "dia": 3, "valor": 26139.6134 },
+    { "dia": 4, "valor": 0.0 },
+    { "dia": 5, "valor": 0.0 },
+    { "dia": 6, "valor": 26742.6612 },
+    { "dia": 7, "valor": 0.0 },
+    { "dia": 8, "valor": 42889.2258 },
+    { "dia": 9, "valor": 46251.174 },
+    { "dia": 10, "valor": 11191.4722 },
+    { "dia": 11, "valor": 0.0 },
+    { "dia": 12, "valor": 0.0 },
+    { "dia": 13, "valor": 3847.4823 },
+    { "dia": 14, "valor": 373.7838 },
+    { "dia": 15, "valor": 2659.7563 },
+    { "dia": 16, "valor": 48924.2448 },
+    { "dia": 17, "valor": 18419.2614 },
+    { "dia": 18, "valor": 0.0 },
+    { "dia": 19, "valor": 0.0 },
+    { "dia": 20, "valor": 35240.1826 },
+    { "dia": 21, "valor": 43829.1667 },
+    { "dia": 22, "valor": 18235.6852 },
+    { "dia": 23, "valor": 4355.0662 },
+    { "dia": 24, "valor": 13327.1025 },
+    { "dia": 25, "valor": 0.0 },
+    { "dia": 26, "valor": 0.0 },
+    { "dia": 27, "valor": 25681.8318 },
+    { "dia": 28, "valor": 1718.1221 },
+    { "dia": 29, "valor": 13220.495 },
+    { "dia": 30, "valor": 8414.61 }
+  ];
+
+  let faturamentosDetalhados = '';
+  dados.forEach(d => {
+    faturamentosDetalhados += `Dia ${d.dia}: R$${d.valor.toFixed(2)}<br>`;
+  });
+
+  document.getElementById("saida3").innerHTML = faturamentosDetalhados;
+}
+
+
+    // Questão 4
+    function calcularPercentual() {
+      const estados = {
+        "SP": 67836.43,
+        "RJ": 36678.66,
+        "MG": 29229.88,
+        "ES": 27165.48,
+        "Outros": 19849.53
+      };
+
+      const total = Object.values(estados).reduce((a, b) => a + b, 0);
+
+      let saida = "";
+      for (const estado in estados) {
+        const perc = (estados[estado] / total * 100).toFixed(2);
+        saida += `${estado}: ${perc}%<br>`;
+      }
+
+      document.getElementById("saida4").innerHTML = saida;
+    }
+
+    // Questão 5
+function inverterTexto() {
+  const texto = document.getElementById("inputTexto").value;
+
+  // Verifica se o texto contém apenas letras e espaços, nao permitindo caracteres especiais ou numeros
+  const regex = /^[A-Za-z\s]*$/;
+  
+  if (!regex.test(texto)) {
+    document.getElementById("saida5").innerText = "Por favor, digite apenas letras e espaços.";
+    return; // Não prossegue se não for uma string válida
+  }
+
+  let invertida = "";
+  for (let i = texto.length - 1; i >= 0; i--) {
+    invertida += texto[i];
+  }
+  document.getElementById("saida5").innerText = "Invertido: " + invertida;
+}
+
+  </script>
+</body>
+</html>
