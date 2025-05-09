@@ -1,3 +1,5 @@
+RETIRAR DA PASTA Target-Sistemas-main, O LINK PARA HTML DEVE SER "/Questionario/target_sistemas.html"
+
 Questionario realizado em HTML para melhor visualização e expêriencia do avaliador.
 
 Questionario também realizado em py caso a maquina do avaliador, por algum motivo não consiga fazer a visualização em HTML.
