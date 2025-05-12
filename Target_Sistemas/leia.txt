@@ -14,3 +14,4 @@ Placa de vídeo	AMD Radeon(TM) Graphics (496 MB);
 Tipo de sistema	Sistema operacional de 64 bits, processador baseado em x64.
 
 Versão do Pyton: Python 3.11.9
+Utilizado para visualização do html com o XAMPP v3.3
